@@ -14,8 +14,7 @@ function intersect(nums1: number[], nums2: number[]): number[] {
     let index = longtArr.indexOf(shortArr[i])
     if (index !== -1) {
       numArr.push(shortArr[i])
-      //短数组,长数组的元素都需要改为-1,以防再次出现重复元素
-      shortArr[i] = -1
+      //长数组的元素都需要改为-1,以防再次出现重复元素
       longtArr[index] = -1
     }
   }

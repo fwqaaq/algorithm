@@ -30,3 +30,4 @@ function fourSumCount(
   return total
 }
 // @lc code=end
+console.log(fourSumCount([1, 2], [-2, -1], [-1, 2], [0, 2]))

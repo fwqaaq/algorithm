@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+/**
+ * Given a number, return true if the number is happy, false otherwise
+ * @param {number} n - number
+ * @returns Nothing.
+ */
 function isHappy(n: number): boolean {
   function update() {
     return String(n)

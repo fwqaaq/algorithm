@@ -13,8 +13,10 @@ function removeElement(nums: number[], val: number): number {
     if (nums[high] !== val) nums[low++] = nums[high]
     high++
   }
+  nums[low] = val
+  console.log(nums)
   return low
 }
 // @lc code=end
 
-console.log(removeElement([3, 2, 2, 3, 3, 3], 3))
+console.log(removeElement([1, 2, 2, 3, 4, 3], 3))

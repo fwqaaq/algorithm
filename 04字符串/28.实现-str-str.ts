@@ -43,4 +43,9 @@ function strStr(haystack: string, needle: string): number {
 }
 // @lc code=end
 
-console.log(strStr("mississippi", "mississippi"))
+console.log(
+  strStr(
+    "ababaabbbbababbaabaaabaabbaaaabbabaabbbbbbabbaabbabbbabbbbbaaabaababbbaabbbabbbaabbbbaaabbababbabbbabaaabbaabbabababbbaaaaaaababbabaababaabbbbaaabbbabb",
+    "abbabbbabaa"
+  )
+)

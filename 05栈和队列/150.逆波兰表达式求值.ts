@@ -1,7 +1,10 @@
-/*
- * @lc app=leetcode.cn id=150 lang=typescript
+/**
+ * /*
  *
  * [150] 逆波兰表达式求值
+ *
+ * @format
+ * @lc app=leetcode.cn id=150 lang=typescript
  */
 
 // @lc code=start

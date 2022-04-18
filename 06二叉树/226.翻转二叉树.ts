@@ -20,6 +20,12 @@ class TreeNode {
   }
 }
 
+/**
+ * We invert the left and right children of every node in the tree, and then return the original tree
+ * (which is now inverted).
+ * @param {TreeNode | null} root - The root of the tree.
+ * @returns The root node of the tree.
+ */
 function invertTree(root: TreeNode | null): TreeNode | null {
   // if (!root) return null
   // let temp = root.left

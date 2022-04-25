@@ -32,9 +32,9 @@ function findBottomLeftValue(root: TreeNode | null): number {
   //     if (i === 0) {
   //       leftValue = curNode!.val
   //     }
-  //     //* 一定要从右子树开始遍历,因为左子树的值可能会被覆盖
-  //     if (curNode!.right) queue.push(curNode!.right)
+  //     //* 从当前节点的左右节点放入队列
   //     if (curNode!.left) queue.push(curNode!.left)
+  //     if (curNode!.right) queue.push(curNode!.right)
   //   }
   // }
   // return leftValue

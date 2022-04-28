@@ -1,7 +1,10 @@
-/*
- * @lc app=leetcode.cn id=18 lang=typescript
+/**
+ * /*
  *
  * [18] 四数之和
+ *
+ * @format
+ * @lc app=leetcode.cn id=18 lang=typescript
  */
 
 // @lc code=start

@@ -42,6 +42,7 @@ function invertTree(root: TreeNode | null): TreeNode | null {
     curNode = stack.pop()!
     if (curNode.right) stack.push(curNode.right)
     if (curNode.left) stack.push(curNode.left)
+    //* 左右节点交换
     let temp = curNode.left
     curNode.left = curNode.right
     curNode.right = temp

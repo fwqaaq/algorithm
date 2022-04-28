@@ -22,11 +22,11 @@ class TreeNode {
 
 function getMinimumDifference(root: TreeNode | null): number {
   function inOrder(root: TreeNode | null) {
-    // if (!root) return
-    // inOrder(root.left)
-    // res.push(root.val)
-    // inOrder(root.right)
-    return root ? [...inOrder(root.left), root.val, ...inOrder(root.right)] : []
+    if (!root) return
+    inOrder(root.left)
+    res.push(root.val)
+    inOrder(root.right)
+    // return root ? [...inOrder(root.left), root.val, ...inOrder(root.right)] : []
   }
   const res: number[] = []
   inOrder(root)

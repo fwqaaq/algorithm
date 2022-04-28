@@ -14,13 +14,6 @@ type MyReadonly2<K extends {}, V extends keyof K> = {
   [P in Exclude<keyof K, V>]: K[P]
 }
 
-// type MyReadonly2<K extends {}, V extends keyof K> = {
-//   readonly //* 不需要使用keyof,因为V已经是一个联合类型
-//   [P in V]: K[P]
-// } & {
-//   [P in keyof K]: K[P]
-// }
-
 const todo: MyReadonly2<Todo, "title" | "description"> = {
   title: "Hey",
   description: "foobar",

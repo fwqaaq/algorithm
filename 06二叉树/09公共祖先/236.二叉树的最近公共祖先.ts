@@ -26,7 +26,7 @@ function lowestCommonAncestor(
   q: TreeNode | null
 ): TreeNode | null {
   //递归终止条件
-  //* 如果当前节点为空,或者当前节点为p或者q,那么返回当前节点
+  //* 如果当前节点为空,或者当前节点为p或者q,或者回溯的返回值是p或者q,那么返回当前节点
   if (root === null || root === p || root === q) return root
   let left = lowestCommonAncestor(root.left, p, q)
   let right = lowestCommonAncestor(root.right, p, q)

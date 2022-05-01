@@ -58,7 +58,6 @@ function findBottomLeftValue(root: TreeNode | null): number {
   let curDepth = 0
   let leftValue = 0
   recur(root, 1)
-
   return leftValue
 }
 // @lc code=end

@@ -39,3 +39,4 @@ function countNodes(root: TreeNode | null): number {
   return count
 }
 // @lc code=end
+export{}

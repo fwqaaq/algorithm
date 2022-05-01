@@ -24,14 +24,14 @@ function findMode(root: TreeNode | null): number[] {
   let res: number[] = []
   let maxCount = 1
   let count = 0
-  let pre: TreeNode = null
+  let pre: TreeNode | null = null
   function inOrder(root: TreeNode | null) {
     if (!root) return
     inOrder(root.left)
     //* 只有第一次回溯之后才会记录
     if (pre === null || pre.val !== root.val) count = 1
     //* 如果当前节点和前一个节点相同,则count++
-    if (root.val === pre.val) count++
+    if (pre !== null && root.val === pre!.val) count++
     pre = root
     if (count === maxCount) res.push(root.val)
     //* 只要当前节点的count大于maxCount,则更新maxCount

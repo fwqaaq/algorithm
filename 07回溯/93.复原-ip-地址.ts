@@ -30,9 +30,13 @@ function restoreIpAddresses(s: string): string[] {
       res.push(strArr.join("."))
       return
     }
+    //剪枝优化
+    if (strArr.length === 4) return
 
     let temp = ""
-    for (let i = startIndex; i < Math.min(s.length, startIndex + 3); i++) {
+    //剪枝优化: i和startIndex的范围不能超过2
+    for (let i = startIndex; i < s.length, i - startIndex < 3; i++) {
+      //* temp的最大长度就是3,所以i+1-startIndex<=3
       temp = s.slice(startIndex, i + 1)
       if (isValidIp(temp)) {
         strArr.push(temp)
@@ -45,3 +49,4 @@ function restoreIpAddresses(s: string): string[] {
   return res
 }
 // @lc code=end
+console.log(restoreIpAddresses("25525511135"))

@@ -14,8 +14,12 @@ function findSubsequences(nums: number[]): number[][] {
     if (arr.length > 1) res.push([...arr])
 
     if (startIndex === nums.length) return
+    const set = new Set<number>()
     for (let i = startIndex; i < nums.length; i++) {
-      if (arr.length >= 1 && nums[i] < nums[i - 1]) continue
+      //每次回溯的set都是新的,为了防止广度遍历搜索的重复,需要去使用set去重
+      //将当前的数字加入set中,回溯的时候如果有数字则跳过本次
+      if (set.has(nums[i]) || nums[i] < arr[arr.length - 1]) continue
+      set.add(nums[i])
       arr.push(nums[i])
       trackback(i + 1, arr)
       arr.pop()

@@ -1,12 +1,12 @@
 /** @format */
 
 interface Todo {
-  title: string
-  description: string
+  readonly title: string
+  readonly description: string
 }
 
 type MyReadonly<T extends {}> = {
-  readonly [P in keyof T]: T[P]
+  -readonly [P in keyof T]: T[P]
 }
 
 const todo: MyReadonly<Todo> = {

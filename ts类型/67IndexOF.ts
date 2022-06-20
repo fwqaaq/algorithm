@@ -6,7 +6,7 @@ type IndexOf<
   res extends any[] = []
 > = T extends [infer I, ...infer R]
   ? I extends V
-    ? res["length"]
+    ? res['length']
     : IndexOf<R, V, [...res, V]>
   : -1
 

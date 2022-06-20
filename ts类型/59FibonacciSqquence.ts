@@ -5,8 +5,8 @@ type Fibonacci<
   Index extends number[] = [1],
   P extends number[] = [],
   C extends number[] = [1]
-> = Index["length"] extends T
-  ? C["length"]
+> = Index['length'] extends T
+  ? C['length']
   : Fibonacci<T, [...Index, 1], C, [...C, ...P]>
 
 type Result1 = Fibonacci<3> // 2

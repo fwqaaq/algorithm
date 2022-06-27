@@ -10,4 +10,5 @@ type LastIndexOf<
 
 type Res1 = LastIndexOf<[1, 2, 3, 2, 1], 2> // 3
 type Res2 = LastIndexOf<[0, 0, 0], 2> // -1
+
 export {}

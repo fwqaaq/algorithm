@@ -30,3 +30,4 @@ function candy(ratings: number[]): number {
   return res.reduce((a, b) => a + b, 0)
 }
 // @lc code=end
+export {}

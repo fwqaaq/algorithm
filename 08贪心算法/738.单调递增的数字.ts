@@ -31,10 +31,11 @@ function monotoneIncreasingDigits(n: number): number {
       return item
     })
     .reduce((pre, cur, index) => {
-      console.log(index)
       return pre + cur * 10 ** index
     }, 0)
 }
 // @lc code=end
 
 console.log(monotoneIncreasingDigits(132))
+
+export {}

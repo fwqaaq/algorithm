@@ -3,7 +3,6 @@
  *
  * [69] x 的平方根
  */
-
 pub struct Solution;
 
 // @lc code=start

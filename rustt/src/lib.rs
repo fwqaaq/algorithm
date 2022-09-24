@@ -1,6 +1,8 @@
 mod array {
     pub mod binary_search;
     pub mod eight_four_four;
+    pub mod five_four;
+    pub mod five_nine;
     pub mod nine_seven_seven;
     pub mod nine_zero_four;
     pub mod search_insert_position;

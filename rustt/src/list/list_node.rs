@@ -12,10 +12,10 @@ pub struct List<T> {
 }
 
 impl<T> List<T> {
-    fn new() -> Self {
+    pub fn new() -> Self {
         List { head: None }
     }
-    fn push(&mut self, value: T) {
+    pub fn push(&mut self, value: T) {
         let new_node = Box::new(Node {
             value,
             next: self.head.take(),
@@ -23,11 +23,17 @@ impl<T> List<T> {
 
         self.head = Some(new_node);
     }
-    fn pop(&mut self) -> Option<T> {
+    pub fn pop(&mut self) -> Option<T> {
         self.head.take().map(|node| {
             self.head = node.next;
             node.value
         })
+    }
+    pub fn peek(&self) -> Option<&T> {
+        self.head.as_ref().map(|node| &node.value)
+    }
+    pub fn peek_mut(&mut self) -> Option<&mut T> {
+        self.head.as_mut().map(|node| &mut node.value)
     }
 }
 
@@ -52,5 +58,13 @@ mod tests {
         list.push(3);
         println!("{:?}", list);
         assert_eq!(list.pop(), Some(3));
+        assert_eq!(Some(&2), list.peek());
+        // list.peek_mut().map(|value| *value = 42);
+        if let Some(first_value) = list.peek_mut() {
+            *first_value = 42;
+        }
+        assert_eq!(Some(&42), list.peek());
+        // assert_eq!(Some(4), );
+        // println!("{:?}", list.peek());
     }
 }

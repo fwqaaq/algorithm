@@ -26,6 +26,5 @@ function uniquePaths(m: number, n: number): number {
 }
 // @lc code=end
 
-uniquePaths(3, 7)
-
+console.log(uniquePaths(3, 7))
 export {}

@@ -17,6 +17,7 @@ mod array {
 }
 
 mod list {
+    pub mod cycle_list;
     pub mod list_node;
     pub mod one_nine;
     pub mod seven_zero_seven;

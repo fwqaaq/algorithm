@@ -1,3 +1,4 @@
+use core::fmt;
 use std::{marker::PhantomData, ptr::NonNull};
 
 pub struct Node<T> {
@@ -11,6 +12,15 @@ pub struct Linkedlist<T> {
     head: Option<NonNull<Node<T>>>,
     tail: Option<NonNull<Node<T>>>,
     _maker: std::marker::PhantomData<T>,
+}
+
+#[derive(Debug, Clone)]
+pub struct IndexOutOfRangeError;
+
+impl fmt::Display for IndexOutOfRangeError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Index out of range")
+    }
 }
 
 impl<T> Node<T> {
@@ -108,6 +118,21 @@ impl<T> Linkedlist<T> {
             self.length -= 1;
             node.into_val()
         })
+    }
+
+    fn peek_front(&self) -> Option<&T> {
+        // as_ref --> unsafe{&*self.head.as_ptr()}
+        unsafe { self.head.as_ref().map(|head| &head.as_ref().val) }
+    }
+    fn peek_back(&self) -> Option<&T> {
+        unsafe { self.tail.as_ref().map(|tail| &tail.as_ref().val) }
+    }
+
+    fn peek_front_mut(&mut self) -> Option<&mut T> {
+        unsafe { self.head.as_mut().map(|head| &mut head.as_mut().val) }
+    }
+    fn peek_back_mut(&mut self) -> Option<&mut T> {
+        unsafe { self.tail.as_mut().map(|tail| &mut tail.as_mut().val) }
     }
 }
 

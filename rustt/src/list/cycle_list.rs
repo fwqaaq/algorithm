@@ -1,5 +1,5 @@
 use core::fmt;
-use std::{marker::PhantomData, ptr::NonNull};
+use std::{error::Error, marker::PhantomData, ptr::NonNull};
 
 pub struct Node<T> {
     pub val: T,
@@ -22,6 +22,8 @@ impl fmt::Display for IndexOutOfRangeError {
         write!(f, "Index out of range")
     }
 }
+
+impl Error for IndexOutOfRangeError {}
 
 impl<T> Node<T> {
     pub fn new(val: T) -> Self {
@@ -133,6 +135,75 @@ impl<T> Linkedlist<T> {
     }
     fn peek_back_mut(&mut self) -> Option<&mut T> {
         unsafe { self.tail.as_mut().map(|tail| &mut tail.as_mut().val) }
+    }
+
+    fn get_by_idx(&self, idx: usize) -> Result<Option<NonNull<Node<T>>>, Box<dyn Error>> {
+        if idx >= self.length {
+            return Err(IndexOutOfRangeError {}.into());
+        }
+        let mut cur;
+        if idx <= (self.length - 1) / 2 {
+            cur = self.head;
+            for _ in 0..idx {
+                cur = unsafe { cur.unwrap().as_ref().next };
+            }
+        } else {
+            cur = self.tail;
+            for _ in idx..self.length - 1 {
+                cur = unsafe { cur.unwrap().as_ref().prev };
+            }
+        }
+
+        Ok(cur)
+    }
+
+    fn get_by_idx_mut(
+        &mut self,
+        idx: usize,
+    ) -> Result<Option<&mut NonNull<Node<T>>>, Box<dyn Error>> {
+        if idx >= self.length {
+            return Err(IndexOutOfRangeError {}.into());
+        }
+        let mut cur;
+        if idx <= (self.length - 1) / 2 {
+            cur = self.head.as_mut();
+            for _ in 0..idx {
+                cur = unsafe { cur.unwrap().as_mut().next.as_mut() };
+            }
+        } else {
+            cur = self.tail.as_mut();
+            for _ in idx..self.length - 1 {
+                cur = unsafe { cur.unwrap().as_mut().prev.as_mut() };
+            }
+        }
+
+        Ok(cur)
+    }
+
+    fn insert_by_idx(&mut self, idx: usize, val: T) -> Result<(), Box<dyn Error>> {
+        if idx > self.length {
+            return Err(IndexOutOfRangeError {}.into());
+        }
+
+        if idx == 0 {
+            return Ok(self.push_front(val));
+        } else if idx == self.length {
+            return Ok(self.push_back(val));
+        }
+
+        unsafe {
+            let mut node = Box::new(Node::new(val));
+            let before_node = self.get_by_idx(idx - 1)?;
+            let after_node = before_node.unwrap().as_mut().next;
+            node.prev = before_node;
+            node.next = after_node;
+            let node = NonNull::new(Box::into_raw(node));
+
+            before_node.unwrap().as_mut().next = node;
+            after_node.unwrap().as_mut().prev = node;
+        }
+
+        Ok(())
     }
 }
 

@@ -17,11 +17,18 @@ mod array {
 }
 
 mod list {
-    pub mod cycle_list;
+    pub mod doubly_list;
     pub mod list_node;
     pub mod one_nine;
     pub mod seven_zero_seven;
     pub mod two_four;
     pub mod two_zero_six;
     pub mod two_zero_three;
+}
+
+mod hash {
+    pub mod four_nine;
+    pub mod four_three_eight;
+    pub mod three_eight_three;
+    pub mod two_four_two;
 }

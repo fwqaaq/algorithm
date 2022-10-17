@@ -7,14 +7,10 @@
     {
       "type": "lldb",
       "request": "launch",
+      "sourceLanguages": ["rust"],
       "name": "Debug unit tests in library 'rustt'",
       "cargo": {
-        "args": [
-          "test",
-          "--no-run",
-          "--lib",
-          "--package=rustt"
-        ],
+        "args": ["test", "--no-run", "--lib", "--package=rustt"],
         "filter": {
           "name": "rustt",
           "kind": "lib"

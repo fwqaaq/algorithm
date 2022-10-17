@@ -1,4 +1,4 @@
-use std::{slice::from_raw_parts, str::from_utf8_unchecked};
+use std::{collections::HashSet, slice::from_raw_parts, str::from_utf8_unchecked};
 
 fn get_memory_location() -> (usize, usize) {
     let string = "hello world";
@@ -20,5 +20,8 @@ fn main() {
     // );
     // 如果大家想知道为何处理裸指针需要 `unsafe`，可以试着反注释以下代码
     // let message = get_str_at_location(1000, 10);
-    println!("{:?}", b'a');
+    let v = vec![1, 2, 3, 4, 5, 3, 5];
+    let vikings = v.into_iter().collect::<HashSet<_>>();
+
+    println!("{:?}", vikings);
 }

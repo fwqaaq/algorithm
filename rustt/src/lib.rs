@@ -33,4 +33,5 @@ mod hash {
     pub mod three_eight_three;
     pub mod three_four_nine;
     pub mod two_four_two;
+    pub mod two_zero_two;
 }

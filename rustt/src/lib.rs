@@ -39,3 +39,11 @@ mod hash {
     pub mod two_four_two;
     pub mod two_zero_two;
 }
+
+mod str {
+    pub mod five_four_one;
+    pub mod offer_five_eight;
+    pub mod offer_zero_five;
+    pub mod one_five_one;
+    pub mod three_four_four;
+}

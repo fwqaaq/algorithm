@@ -6,7 +6,8 @@
 pub struct Solution;
 // @lc code=start
 impl Solution {
-    pub fn get_next(mut next: Vec<i32>, s: &Vec<char>) -> Vec<i32> {
+    pub fn get_next(next_len: usize, s: &Vec<char>) -> Vec<i32> {
+        let mut next = vec![-1; next_len];
         let mut j = -1;
         for i in 1..s.len() {
             // 前后缀不相同，继续向前回退
@@ -33,8 +34,7 @@ impl Solution {
             needle.chars().collect::<Vec<char>>(),
         );
         let mut j = -1;
-        let mut next = vec![-1; needle.len()];
-        next = Self::get_next(next, &needle_chars);
+        let next = Self::get_next(needle.len(), &needle_chars);
         for (i, v) in haystack_chars.into_iter().enumerate() {
             while j >= 0 && v != needle_chars[(j + 1) as usize] {
                 j = next[j as usize];
@@ -55,8 +55,5 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_str_str() {
-        let res = Solution::get_next(vec![-1; 6], &"aabaaf".to_string().chars().collect());
-        println!("{:?}", res);
-    }
+    fn test_str_str() {}
 }

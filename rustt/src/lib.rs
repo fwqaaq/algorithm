@@ -46,4 +46,5 @@ mod str {
     pub mod offer_zero_five;
     pub mod one_five_one;
     pub mod three_four_four;
+    pub mod two_eight;
 }

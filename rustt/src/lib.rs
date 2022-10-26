@@ -49,3 +49,12 @@ mod str {
     pub mod three_four_four;
     pub mod two_eight;
 }
+
+mod double_pointer {
+    pub mod eight_four_four;
+    pub mod nine_seven_seven;
+    pub mod three_four_four;
+    pub mod two_eight_three;
+    pub mod two_seven;
+    pub mod two_six;
+}

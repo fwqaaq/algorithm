@@ -63,3 +63,8 @@ mod double_pointer {
     pub mod two_six;
     pub mod two_zero_six;
 }
+
+mod stack_and_queue {
+    pub mod two_three_two;
+    pub mod two_two_five;
+}

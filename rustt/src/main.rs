@@ -1,5 +1,5 @@
-use std::{collections::HashSet, slice::from_raw_parts, str::from_utf8_unchecked};
-
+use std::cmp::Reverse;
+use std::{collections::BinaryHeap, slice::from_raw_parts, str::from_utf8_unchecked};
 fn get_memory_location() -> (usize, usize) {
     let string = "hello world";
     let pointer = string.as_ptr();
@@ -20,9 +20,16 @@ fn main() {
     // );
     // 如果大家想知道为何处理裸指针需要 `unsafe`，可以试着反注释以下代码
     // let message = get_str_at_location(1000, 10);
-    /// Converting a vector into a hashset.
+    // Converting a vector into a hashset.
     // let v = vec![1, 2, 3, 4, 5, 3, 5];
     // let vikings = v.into_iter().collect::<HashSet<_>>();
 
-    println!("{:?}", "string".to_string().len());
+    let mut heap = BinaryHeap::new();
+    heap.push(Reverse(2));
+    heap.push(Reverse(6));
+    heap.push(Reverse(1));
+    heap.push(Reverse(3));
+
+    println!("{:?}", heap.peek().unwrap());
+    println!("{:?}", Reverse(3) < Reverse(2));
 }

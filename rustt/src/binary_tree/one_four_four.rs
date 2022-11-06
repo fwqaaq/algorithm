@@ -48,8 +48,8 @@ impl Solution {
         while !stack.is_empty() {
             if let Some(node) = stack.pop().unwrap() {
                 res.push(node.borrow().val);
-                stack.push(node.borrow_mut().right.take());
-                stack.push(node.borrow_mut().left.take());
+                stack.push(node.borrow_mut().right.clone());
+                stack.push(node.borrow_mut().left.clone());
             }
         }
         res

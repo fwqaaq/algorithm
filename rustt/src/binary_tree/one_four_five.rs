@@ -26,18 +26,30 @@ impl TreeNode {
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
+    // pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    //     let mut res = vec![];
+    //     Self::traverse(&root, &mut res);
+    //     res
+    // }
+
+    // pub fn traverse(root: &Option<Rc<RefCell<TreeNode>>>, res: &mut Vec<i32>) {
+    //     if let Some(node) = root {
+    //         Self::traverse(&node.borrow().left, res);
+    //         Self::traverse(&node.borrow().right, res);
+    //         res.push(node.borrow().val);
+    //     }
+    // }
     pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut res = vec![];
-        Self::traverse(&root, &mut res);
-        res
-    }
-
-    pub fn traverse(root: &Option<Rc<RefCell<TreeNode>>>, res: &mut Vec<i32>) {
-        if let Some(node) = root {
-            Self::traverse(&node.borrow().left, res);
-            Self::traverse(&node.borrow().right, res);
-            res.push(node.borrow().val);
+        let mut stack = vec![root];
+        while !stack.is_empty() {
+            if let Some(node) = stack.pop().unwrap() {
+                res.push(node.borrow().val);
+                stack.push(node.borrow().left.clone());
+                stack.push(node.borrow().right.clone());
+            }
         }
+        res.into_iter().rev().collect()
     }
 }
 // @lc code=end

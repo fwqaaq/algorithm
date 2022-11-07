@@ -39,20 +39,45 @@ impl Solution {
     //         Self::traverse(&node.borrow().right, res);
     //     }
     // }
+
     //* 迭代 */
+    // pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    //     let mut res = vec![];
+    //     let mut stack = vec![];
+    //     let mut node = root;
+    //
+    //     while !stack.is_empty() || node.is_some() {
+    //         while let Some(n) = node {
+    //             node = n.borrow().left.clone();
+    //             stack.push(n);
+    //         }
+    //         if let Some(n) = stack.pop() {
+    //             res.push(n.borrow().val);
+    //             node = n.borrow().right.clone();
+    //         }
+    //     }
+    //     res
+    // }
+
+    // 统一迭代
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut res = vec![];
         let mut stack = vec![];
-        let mut node = root;
-
-        while !stack.is_empty() || node.is_some() {
-            while let Some(n) = node {
-                node = n.borrow().left.clone();
-                stack.push(n);
-            }
-            if let Some(n) = stack.pop() {
-                res.push(n.borrow().val);
-                node = n.borrow().right.clone();
+        if root.is_some() {
+            stack.push(root);
+        }
+        while !stack.is_empty() {
+            if let Some(node) = stack.pop().unwrap() {
+                if node.borrow().right.is_some() {
+                    stack.push(node.borrow().right.clone());
+                }
+                stack.push(Some(node.clone()));
+                stack.push(None);
+                if node.borrow().left.is_some() {
+                    stack.push(node.borrow().left.clone());
+                }
+            } else {
+                res.push(stack.pop().unwrap().unwrap().borrow().val);
             }
         }
         res

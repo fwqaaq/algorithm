@@ -1,10 +1,11 @@
 /*
- * @lc app=leetcode.cn id=107 lang=rust
+ * @lc app=leetcode.cn id=515 lang=rust
  *
- * [107] 二叉树的层序遍历 II
+ * [515] 在每个树行中找最大值
  */
 
 pub struct Solution;
+
 // @lc code=start
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -28,17 +29,17 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 impl Solution {
-    pub fn level_order_bottom(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
+    pub fn largest_values(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut res = vec![];
         let mut queue = VecDeque::new();
         if root.is_some() {
             queue.push_back(root);
         }
         while !queue.is_empty() {
-            let mut temp = vec![];
+            let mut max = i32::MIN;
             for _ in 0..queue.len() {
                 let node = queue.pop_front().unwrap().unwrap();
-                temp.push(node.borrow().val);
+                max = max.max(node.borrow().val);
                 if node.borrow().left.is_some() {
                     queue.push_back(node.borrow().left.clone());
                 }
@@ -46,29 +47,9 @@ impl Solution {
                     queue.push_back(node.borrow().right.clone());
                 }
             }
-            res.push(temp);
+            res.push(max);
         }
-        res.into_iter().rev().collect()
+        res
     }
 }
 // @lc code=end
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    fn o(t: TreeNode) -> Option<Rc<RefCell<TreeNode>>> {
-        Some(Rc::new(RefCell::new(t)))
-    }
-    #[test]
-    fn test_level_order() {
-        let root = o(TreeNode {
-            val: 1,
-            left: o(TreeNode::new(2)),
-            right: o(TreeNode::new(3)),
-        });
-        assert_eq!(
-            Solution::level_order_bottom(root),
-            vec![vec![2, 3], vec![1]]
-        );
-    }
-}

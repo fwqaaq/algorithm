@@ -1,5 +1,3 @@
-use std::vec;
-
 /*
  * @lc app=leetcode.cn id=347 lang=rust
  *

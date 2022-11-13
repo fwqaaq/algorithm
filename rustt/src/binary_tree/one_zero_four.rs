@@ -28,25 +28,36 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 impl Solution {
+    //     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    //         let mut queue = VecDeque::new();
+    //         let mut res = 0;
+    //         if root.is_some() {
+    //             queue.push_back(root);
+    //         }
+    //         while !queue.is_empty() {
+    //             res += 1;
+    //             for _ in 0..queue.len() {
+    //                 let node = queue.pop_front().unwrap().unwrap();
+    //                 if node.borrow().left.is_some() {
+    //                     queue.push_back(node.borrow().left.clone());
+    //                 }
+    //                 if node.borrow().right.is_some() {
+    //                     queue.push_back(node.borrow().right.clone());
+    //                 }
+    //             }
+    //         }
+    //         res
+    //     }
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        let mut queue = VecDeque::new();
-        let mut res = 0;
-        if root.is_some() {
-            queue.push_back(root);
+        if root.is_none() {
+            return 0;
         }
-        while !queue.is_empty() {
-            res += 1;
-            for _ in 0..queue.len() {
-                let node = queue.pop_front().unwrap().unwrap();
-                if node.borrow().left.is_some() {
-                    queue.push_back(node.borrow().left.clone());
-                }
-                if node.borrow().right.is_some() {
-                    queue.push_back(node.borrow().right.clone());
-                }
-            }
-        }
-        res
+        std::cmp::max(
+            Self::max_depth(Some(Rc::clone(
+                root.clone().unwrap().borrow().left.as_ref().unwrap(),
+            ))),
+            Self::max_depth(root.unwrap().borrow().right.clone()),
+        ) + 1
     }
 }
 // @lc code=end

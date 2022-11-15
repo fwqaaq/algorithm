@@ -1,8 +1,7 @@
 use std::rc::Rc;
 fn main() {
-    let a = Rc::new(String::from("hello, world"));
-    let mut b = a.clone();
+    let b = "str".as_bytes().to_vec();
+    let s = b.as_slice();
 
-    assert_eq!(2, Rc::strong_count(&a));
-    assert_eq!(Rc::strong_count(&a), Rc::strong_count(&b))
+    println!("{}", String::from_utf8(s.to_vec()).unwrap());
 }

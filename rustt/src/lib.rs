@@ -84,10 +84,12 @@ mod binary_tree {
     pub mod one_one_one;
     pub mod one_one_seven;
     pub mod one_one_six;
+    pub mod one_one_zero;
     pub mod one_zero_four;
     pub mod one_zero_one;
     pub mod one_zero_seven;
     pub mod one_zero_two;
     pub mod six_three_seven;
     pub mod two_two_six;
+    pub mod two_two_two;
 }

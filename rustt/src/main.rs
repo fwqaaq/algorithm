@@ -1,4 +1,3 @@
-use std::rc::Rc;
 fn main() {
     let b = "str".as_bytes().to_vec();
     let s = b.as_slice();

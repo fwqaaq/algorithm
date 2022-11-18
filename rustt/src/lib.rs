@@ -89,7 +89,9 @@ mod binary_tree {
     pub mod one_zero_one;
     pub mod one_zero_seven;
     pub mod one_zero_two;
+    pub mod one_zero_zero;
     pub mod six_three_seven;
+    pub mod two_five_seven;
     pub mod two_two_six;
     pub mod two_two_two;
 }

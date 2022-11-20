@@ -23,26 +23,35 @@ impl TreeNode {
         }
     }
 }
+
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
     pub fn binary_tree_paths(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<String> {
         let mut res = vec![];
-        Self::recur(&root, String::from(""), &mut res);
+        let mut path = vec![];
+        Self::recur(&root, &mut path, &mut res);
         res
     }
-    pub fn recur(node: &Option<Rc<RefCell<TreeNode>>>, mut path: String, res: &mut Vec<String>) {
-        let r = node.as_ref().unwrap().borrow();
-        path += format!("{}", r.val).as_str();
-        if r.left.is_none() && r.right.is_none() {
-            res.push(path.to_string());
+
+    pub fn recur(
+        root: &Option<Rc<RefCell<TreeNode>>>,
+        path: &mut Vec<String>,
+        res: &mut Vec<String>,
+    ) {
+        let node = root.as_ref().unwrap().borrow();
+        path.push(node.val.to_string());
+        if node.left.is_none() && node.right.is_none() {
+            res.push(path.join("->"));
             return;
         }
-        if r.left.is_some() {
-            Self::recur(&r.left, path.clone() + "->", res);
+        if node.left.is_some() {
+            Self::recur(&node.left, path, res);
+            path.pop();
         }
-        if r.right.is_some() {
-            Self::recur(&r.right, path + "->", res);
+        if node.right.is_some() {
+            Self::recur(&node.right, path, res);
+            path.pop();
         }
     }
 }

@@ -52,19 +52,19 @@ impl Solution {
     // }
 
     //* 递归 */
-    // pub fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    //     if let Some(node) = root {
-    //         match (node.borrow().left.clone(), node.borrow().right.clone()) {
-    //             (Some(n1), None) => 1 + Self::min_depth(Some(n1)),
-    //             (None, Some(n2)) => 1 + Self::min_depth(Some(n2)),
-    //             (Some(n1), Some(n2)) => {
-    //                 1 + std::cmp::min(Self::min_depth(Some(n1)), Self::min_depth(Some(n2)))
-    //             }
-    //             _ => 1,
-    //         }
-    //     } else {
-    //         0
-    //     }
-    // }
+    pub fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        if let Some(node) = root {
+            match (node.borrow().left.clone(), node.borrow().right.clone()) {
+                (Some(n1), None) => 1 + Self::min_depth(Some(n1)),
+                (None, Some(n2)) => 1 + Self::min_depth(Some(n2)),
+                (Some(n1), Some(n2)) => {
+                    1 + std::cmp::min(Self::min_depth(Some(n1)), Self::min_depth(Some(n2)))
+                }
+                _ => 1,
+            }
+        } else {
+            0
+        }
+    }
 }
 // @lc code=end

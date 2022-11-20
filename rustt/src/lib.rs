@@ -76,7 +76,9 @@ mod stack_and_queue {
 
 mod binary_tree {
     pub mod five_one_five;
+    pub mod five_one_three;
     pub mod four_two_nine;
+    pub mod four_zero_four;
     pub mod nine_four;
     pub mod one_four_five;
     pub mod one_four_four;
@@ -84,6 +86,7 @@ mod binary_tree {
     pub mod one_one_one;
     pub mod one_one_seven;
     pub mod one_one_six;
+    pub mod one_one_two;
     pub mod one_one_zero;
     pub mod one_zero_four;
     pub mod one_zero_one;

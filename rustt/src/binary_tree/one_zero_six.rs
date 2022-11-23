@@ -26,21 +26,16 @@ impl TreeNode {
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
-    pub fn build_tree(
-        mut inorder: Vec<i32>,
-        mut postorder: Vec<i32>,
-    ) -> Option<Rc<RefCell<TreeNode>>> {
+    pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
         if inorder.is_empty() {
             return None;
         }
+        let mut postorder = postorder;
         let root = postorder.pop().unwrap();
         let index = inorder.iter().position(|&x| x == root).unwrap();
         let mut root = TreeNode::new(root);
-        root.left = Self::build_tree(
-            inorder.splice(0..index, []).collect(),
-            postorder.splice(0..index, []).collect(),
-        );
-        root.right = Self::build_tree(inorder.split_off(1), postorder);
+        root.left = Self::build_tree(inorder[..index].to_vec(), postorder[..index].to_vec());
+        root.right = Self::build_tree(inorder[index + 1..].to_vec(), postorder[index..].to_vec());
         Some(Rc::new(RefCell::new(root)))
     }
 }

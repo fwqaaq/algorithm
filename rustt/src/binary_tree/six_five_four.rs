@@ -27,24 +27,45 @@ impl TreeNode {
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
-    pub fn construct_maximum_binary_tree(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        Self::traversal(&nums, 0, nums.len())
-    }
+    //* 索引 */
+    // pub fn construct_maximum_binary_tree(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+    //     Self::traversal(&nums, 0, nums.len())
+    // }
+    // pub fn traversal(nums: &Vec<i32>, left: usize, right: usize) -> Option<Rc<RefCell<TreeNode>>> {
+    //     if left >= right {
+    //         return None;
+    //     }
+    //     let mut max_value_index = left;
+    //     for i in left + 1..right {
+    //         if nums[max_value_index] < nums[i] {
+    //             max_value_index = i;
+    //         }
+    //     }
+    //     let mut root = TreeNode::new(nums[max_value_index]);
+    //     root.left = Self::traversal(nums, left, max_value_index);
+    //     root.right = Self::traversal(nums, max_value_index + 1, right);
+    //     Some(Rc::new(RefCell::new(root)))
+    // }
 
-    pub fn traversal(nums: &Vec<i32>, left: usize, right: usize) -> Option<Rc<RefCell<TreeNode>>> {
-        if left >= right {
+    //* 数组 */
+    pub fn construct_maximum_binary_tree(mut nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+        if nums.is_empty() {
             return None;
         }
-        let mut max_value_index = left;
-        for i in left + 1..right {
+        let mut max_value_index = 0;
+        for i in 0..nums.len() {
             if nums[max_value_index] < nums[i] {
                 max_value_index = i;
             }
         }
-        let mut root = TreeNode::new(nums[max_value_index]);
-        root.left = Self::traversal(nums, left, max_value_index);
-        root.right = Self::traversal(nums, max_value_index + 1, right);
-        Some(Rc::new(RefCell::new(root)))
+        let right = Self::construct_maximum_binary_tree(nums.split_off(max_value_index + 1));
+        let root = nums.pop().unwrap();
+        let left = Self::construct_maximum_binary_tree(nums);
+        Some(Rc::new(RefCell::new(TreeNode {
+            val: root,
+            left,
+            right,
+        })))
     }
 }
 // @lc code=end

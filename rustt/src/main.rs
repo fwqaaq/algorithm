@@ -33,10 +33,10 @@ impl Unmovable {
 }
 
 fn main() {
-    let unmoved = Unmovable::new("hello".to_string());
-    // 只要结构体没有被转移，那指针就应该指向正确的位置，而且我们可以随意移动指针
-    let mut still_unmoved = unmoved;
-    assert_eq!(still_unmoved.slice, NonNull::from(&still_unmoved.data));
+    // let unmoved = Unmovable::new("hello".to_string());
+    // // 只要结构体没有被转移，那指针就应该指向正确的位置，而且我们可以随意移动指针
+    // let mut still_unmoved = unmoved;
+    // assert_eq!(still_unmoved.slice, NonNull::from(&still_unmoved.data));
 
     // 因为我们的类型没有实现 `Unpin` 特征，下面这段代码将无法编译
     // let mut new_unmoved = Unmovable::new("world".to_string());

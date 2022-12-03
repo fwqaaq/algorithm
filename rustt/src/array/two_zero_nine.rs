@@ -1,5 +1,3 @@
-use std::result;
-
 /*
  * @lc app=leetcode.cn id=209 lang=rust
  *
@@ -32,11 +30,11 @@ impl Solution {
 // @lc code=end
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use super::*;
 
     #[test]
-    fn test_min_sub_array_len() {
+    pub fn test_min_sub_array_len() {
         let nums = vec![2, 3, 1, 2, 4, 3];
         let target = 100;
         let res = Solution::min_sub_array_len(target, nums);

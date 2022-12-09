@@ -51,7 +51,8 @@ impl Solution {
             },
             std::cmp::Ordering::Greater => node.left = Self::delete_node(node.left.clone(), key),
         }
-        root.clone()
+        drop(node);
+        root
     }
 }
 // @lc code=end

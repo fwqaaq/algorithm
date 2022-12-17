@@ -26,9 +26,6 @@ impl TreeNode {
 use std::cell::RefCell;
 use std::rc::Rc;
 
-static mut PRE: Option<i32> = None;
-static mut MIN: i32 = i32::MAX;
-
 impl Solution {
     //* 辅助数组 */
     //     pub fn get_minimum_difference(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
@@ -51,53 +48,52 @@ impl Solution {
     //     }
 
     //* 递归中 */
-    // pub fn get_minimum_difference(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    //     unsafe {
-    //         Self::inorder(root);
-    //         MIN
-    //     }
-    // }
-    // pub fn inorder(root: Option<Rc<RefCell<TreeNode>>>) {
-    //     if root.is_none() {
-    //         return;
-    //     }
-    //     let node = root.as_ref().unwrap().borrow();
-    //     Self::inorder(node.left.clone());
-    //     unsafe {
-    //         if let Some(pre) = PRE {
-    //             MIN = (node.val - pre).min(MIN);
-    //         }
-    //         PRE = Some(node.val)
-    //     }
-    //     Self::inorder(node.right.clone());
-    // }
+    pub fn get_minimum_difference(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        let mut pre = None;
+        let mut min = i32::MAX;
+        Self::inorder(root, &mut pre, &mut min);
+        min
+    }
+    pub fn inorder(root: Option<Rc<RefCell<TreeNode>>>, pre: &mut Option<i32>, min: &mut i32) {
+        if root.is_none() {
+            return;
+        }
+        let node = root.as_ref().unwrap().borrow();
+        Self::inorder(node.left.clone(), pre, min);
+        if let Some(pre) = pre {
+            *min = (node.val - *pre).min(*min);
+        }
+        *pre = Some(node.val);
+
+        Self::inorder(node.right.clone(), pre, min);
+    }
 
     //*迭代 */
-    pub fn get_minimum_difference(mut root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        if root.is_none() {
-            return 0;
-        }
-        let mut stack = vec![];
-        let mut pre = -1;
-        let mut res = i32::MAX;
-        while root.is_some() || !stack.is_empty() {
-            while let Some(node) = root {
-                root = node.borrow().left.clone();
-                stack.push(node);
-            }
+    // pub fn get_minimum_difference(mut root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    //     if root.is_none() {
+    //         return 0;
+    //     }
+    //     let mut stack = vec![];
+    //     let mut pre = -1;
+    //     let mut res = i32::MAX;
+    //     while root.is_some() || !stack.is_empty() {
+    //         while let Some(node) = root {
+    //             root = node.borrow().left.clone();
+    //             stack.push(node);
+    //         }
 
-            let node = stack.pop().unwrap();
+    //         let node = stack.pop().unwrap();
 
-            if pre >= 0 {
-                res = res.min(node.borrow().val - pre);
-            }
+    //         if pre >= 0 {
+    //             res = res.min(node.borrow().val - pre);
+    //         }
 
-            pre = node.borrow().val;
+    //         pre = node.borrow().val;
 
-            root = node.borrow().right.clone();
-        }
-        res
-    }
+    //         root = node.borrow().right.clone();
+    //     }
+    //     res
+    // }
 }
 // @lc code=end
 #[cfg(test)]

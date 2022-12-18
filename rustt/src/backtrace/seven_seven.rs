@@ -4,35 +4,36 @@
  * [77] 组合
  */
 
-use std::path;
+use std::backtrace;
 
 pub struct Solution;
 
 // @lc code=start
 impl Solution {
-    fn backtrace(
-        result: &mut Vec<Vec<i32>>,
+    pub fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
+        let mut res = vec![];
+        let mut path = vec![];
+        Self::backtrace(&mut res, &mut path, n, k, 1);
+        res
+    }
+
+    pub fn backtrace(
+        res: &mut Vec<Vec<i32>>,
         path: &mut Vec<i32>,
-        n: i32,
-        k: i32,
+        target_num: i32,
+        count: i32,
         start_index: i32,
     ) {
-        let len = path.len() as i32;
-        if len == k {
-            result.push(path.to_vec());
+        if count as usize == path.len() {
+            res.push(path.to_vec());
             return;
         }
-        for i in start_index..=n - (k - len) + 1 {
+
+        for i in start_index..=target_num - (count - path.len() as i32) + 1 {
             path.push(i);
-            Self::backtrace(result, path, n, k, i + 1);
+            Self::backtrace(res, path, target_num, count, i + 1);
             path.pop();
         }
-    }
-    pub fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
-        let mut result = vec![];
-        let mut path = vec![];
-        Self::backtrace(&mut result, &mut path, n, k, 1);
-        result
     }
 }
 // @lc code=end

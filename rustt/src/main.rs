@@ -1,5 +1,5 @@
 // pub use std::array::binary_search;
-use std::borrow::Cow;
+use std::{borrow::Cow, cmp::Reverse};
 
 fn abs_all(input: &mut Cow<[i32]>) {
     for i in 0..input.len() {
@@ -19,9 +19,14 @@ fn main() {
     //     println!("{:?}", x_ptr);
     //     println!("{:?}", x_ptr.add(1));
     // }
-    let s1 = [1, -2, 3];
-    let mut i1 = Cow::from(&s1[..]);
-    abs_all(&mut i1);
-    println!("{:?}", s1);
-    println!("{:?}", i1);
+    use std::ptr;
+
+    let x = 10;
+    let y = &x as *const i32 as *mut i32;
+
+    unsafe {
+        ptr::write_volatile(y, 20);
+        println!("{}", *y);
+    }
+    println!("{x}");
 }

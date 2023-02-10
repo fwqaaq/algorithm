@@ -4,7 +4,7 @@
  * [24] 两两交换链表中的节点
  */
 
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 
 // @lc code=start
 /**
@@ -21,10 +21,10 @@ import { ListNode } from "./707.设计链表"
 
 function swapPairs(head: ListNode | null): ListNode | null {
   let VNode = new ListNode(0, head)
-  let cur = VNode
+  let cur: ListNode | null = VNode
   while (cur && cur.next && cur.next.next) {
     let node1 = cur.next
-    let node2 = cur.next.next
+    let node2: ListNode = cur.next.next
     //保存node2的下一个节点
     let tmp = node2.next
     //如果有虚拟头节点指向,并且cur指向的节点顺序不会变

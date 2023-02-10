@@ -6,7 +6,7 @@ function findSubstring(s: string, words: string[]): number[] {
   const maps1 = new Map<string, number>()
   for (let word of words) {
     // 判断有没有子串,没有就是1,每有一次向上+1
-    maps1.set(word, maps1.has(word) ? maps1.get(word) + 1 : 1)
+    maps1.set(word, maps1.has(word) ? maps1.get(word)! + 1 : 1)
   }
   //用i来表示第一个滑动窗口左指针
   for (let i = 0; i <= s.length - wordsLength * wordLength; i++) {
@@ -25,12 +25,12 @@ function findSubstring(s: string, words: string[]): number[] {
       let wordStr = wordsStr.substr(j, wordLength)
       //判断wordsStr滑动窗口有没有符合子串
       if (maps1.has(wordStr)) {
-        maps2.set(wordStr, maps2.has(wordStr) ? maps2.get(wordStr) + 1 : 1)
+        maps2.set(wordStr, maps2.has(wordStr) ? maps2.get(wordStr)! + 1 : 1)
       } else {
         break
       }
       //如果maps2中值大于maps1中,就代表子串多余maps1,直接返回
-      if (maps2.get(wordStr) > maps1.get(wordStr)) break
+      if (maps2.get(wordStr)! > maps1.get(wordStr)!) break
     }
     //如果两个表相等,那么就符合条件
     for (let [key, value] of maps1) {
@@ -44,5 +44,5 @@ function findSubstring(s: string, words: string[]): number[] {
   return complyNums
 }
 
-console.log(findSubstring("barfoothefoobarman", ["foo", "bar"]))
+console.log(findSubstring('barfoothefoobarman', ['foo', 'bar']))
 export {}

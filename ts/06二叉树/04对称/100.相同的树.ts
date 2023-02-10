@@ -28,11 +28,11 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   //* 如果一个是空,一个不是空,则返回false
   if (q === null || p === null) return false
   //* 判断两个节点是否相等
-  if (q!.val !== p!.val) return false
+  if (q.val !== p.val) return false
 
   //* 递归的判断两棵树相同节点是否相等.
-  let bool1 = isSameTree(q!.left, p!.left)
-  let bool2 = isSameTree(q!.right, p!.right)
+  let bool1 = isSameTree(q.left, p.left)
+  let bool2 = isSameTree(q.right, p.right)
 
   return bool1 && bool2
 }

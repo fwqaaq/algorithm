@@ -27,11 +27,11 @@ function levelOrder(root: Node | null): number[][] {
     let len = queue.length
     let curArr: number[] = []
     for (let i = 0; i < len; i++) {
-      let curNode = queue.shift()
-      curArr.push(curNode!.val)
-      if (curNode!.children.length !== 0) {
-        for (let i = 0; i < curNode!.children.length; i++) {
-          queue.push(curNode!.children[i])
+      let curNode = queue.shift()!
+      curArr.push(curNode.val)
+      if (curNode.children.length !== 0) {
+        for (let i = 0; i < curNode.children.length; i++) {
+          queue.push(curNode.children[i])
         }
       }
     }

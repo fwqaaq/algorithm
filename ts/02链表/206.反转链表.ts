@@ -4,7 +4,7 @@
  * [206] 反转链表
  */
 
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 
 // @lc code=start
 /**
@@ -20,8 +20,8 @@ import { ListNode } from "./707.设计链表"
  */
 
 function reverseList(head: ListNode | null): ListNode | null {
-  let pre: ListNode = null
-  let cur: ListNode = head
+  let pre: ListNode | null = null
+  let cur: ListNode | null = head
   while (cur) {
     //*保存下一个节点
     let next = cur.next

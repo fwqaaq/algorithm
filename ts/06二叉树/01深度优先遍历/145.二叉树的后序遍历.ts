@@ -22,7 +22,7 @@
  * }
  */
 
-import { binaryTrees as TreeNode } from "../nodeTree"
+import { binaryTrees as TreeNode } from '../nodeTree.js'
 
 //function postorderTraversal(root: TreeNode<number> | null): number[] {
 //  function traverse(
@@ -45,10 +45,10 @@ function postorderTraversal(root: TreeNode<number>): number[] {
   const res: number[] = []
   const stack: TreeNode<number>[] = [root]
   while (stack.length > 0) {
-    let node = stack.pop()
-    res.push(node!.key)
-    if (node!.left !== null) stack.push(node!.left)
-    if (node!.right !== null) stack.push(node!.right)
+    let node = stack.pop()!
+    res.push(node.key)
+    if (node.left !== null) stack.push(node.left)
+    if (node.right !== null) stack.push(node.right)
   }
   return res.reverse()
 }

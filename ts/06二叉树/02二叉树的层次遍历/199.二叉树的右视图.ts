@@ -21,7 +21,7 @@
  *     }
  * }
  */
-import type { binaryTrees as TreeNode } from "../nodeTree"
+import type { binaryTrees as TreeNode } from '../nodeTree.js'
 function rightSideView(root: TreeNode<number> | null): number[] {
   let res: number[] = []
   if (root === null) return res
@@ -30,14 +30,14 @@ function rightSideView(root: TreeNode<number> | null): number[] {
     let queueLen = queue.length
     for (let i = 0; i < queueLen; i++) {
       //* 由于每次会增加节点(push),所以这里从头部去除节点
-      let curNode = queue.shift()
+      let curNode = queue.shift()!
       //* 从右往左遍历
       if (i === 0) {
-        res.push(curNode!.key)
+        res.push(curNode.key)
       }
       //* 从右往左入队
-      if (curNode!.right) queue.push(curNode!.right)
-      if (curNode!.left) queue.push(curNode!.left)
+      if (curNode.right) queue.push(curNode.right)
+      if (curNode.left) queue.push(curNode.left)
     }
   }
   return res

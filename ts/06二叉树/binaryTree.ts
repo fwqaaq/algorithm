@@ -1,7 +1,7 @@
 /** @format */
 
-import type { binaryTrees as nodeTree } from "./nodeTree"
-import { binaryTrees } from "./nodeTree"
+import type { binaryTrees as nodeTree } from './nodeTree.js'
+import { binaryTrees } from './nodeTree.js'
 
 export const root: nodeTree<number> = new binaryTrees<number>(10)
 root.left = new binaryTrees<number>(5)

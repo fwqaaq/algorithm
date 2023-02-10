@@ -34,11 +34,11 @@ function maxDepth(root: Node | null): number {
     count++
     let len = queue.length
     for (let i = 0; i < len; i++) {
-      let curNode = queue.shift()
+      let curNode = queue.shift()!
       //* 不能在if中进行shfit,这样最后一个叶子节点由于没有children属性,不可能被遍历到,也就不会弹出
       //* 导致死循环
-      if (curNode!.children.length !== 0) {
-        curNode?.children.forEach((item) => {
+      if (curNode.children.length !== 0) {
+        curNode.children.forEach((item) => {
           queue.push(item)
         })
       }

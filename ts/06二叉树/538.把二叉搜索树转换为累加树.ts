@@ -23,12 +23,12 @@ class TreeNode {
 function convertBST(root: TreeNode | null): TreeNode | null {
   if (!root) return null
   let sum = 0
-  function recur(root: TreeNode) {
+  function recur(root: TreeNode | null) {
     if (!root) return null
-    recur(root.right!)
+    recur(root.right)
     sum += root.val
     root.val = sum
-    recur(root.left!)
+    recur(root.left)
   }
   recur(root)
   return root

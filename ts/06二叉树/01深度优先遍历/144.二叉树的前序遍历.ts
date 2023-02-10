@@ -20,7 +20,7 @@
  *     }
  * }
  */
-import type { binaryTrees as TreeNode } from "../nodeTree"
+import type { binaryTrees as TreeNode } from '../nodeTree.js'
 //* 递归
 //function preorderTraversal(root: TreeNode<number> | null): number[] {
 //  function traverse(
@@ -43,11 +43,11 @@ function preorderTraversal(root: TreeNode<number> | null): number[] {
   const res: number[] = []
   const stack: TreeNode<number>[] = [root]
   while (stack.length > 0) {
-    const node = stack.pop()
+    const node = stack.pop()!
     //* 只要栈内有节点,就把节点的值放入结果数组
-    res.push(node!.key)
-    if (node!.right !== null) stack.push(node!.right)
-    if (node!.left !== null) stack.push(node!.left)
+    res.push(node.key)
+    if (node.right !== null) stack.push(node.right)
+    if (node.left !== null) stack.push(node.left)
   }
   return res
 }

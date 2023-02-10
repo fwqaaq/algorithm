@@ -1,4 +1,4 @@
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 function getIntersectionNode(
   headA: ListNode | null,
   headB: ListNode | null

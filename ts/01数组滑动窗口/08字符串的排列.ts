@@ -2,7 +2,7 @@ function checkInclusion(s1: string, s2: string): boolean {
   const mapInit = new Map<string, number>()
 
   for (let alpha of s1) {
-    mapInit.set(alpha, mapInit.has(alpha) ? mapInit.get(alpha) + 1 : 1)
+    mapInit.set(alpha, mapInit.has(alpha) ? mapInit.get(alpha)! + 1 : 1)
   }
   for (let i = 0; i <= s2.length - s1.length; i++) {
     let same = true
@@ -12,7 +12,7 @@ function checkInclusion(s1: string, s2: string): boolean {
       if (mapInit.has(wordStr[j])) {
         mapCompare.set(
           wordStr[j],
-          mapCompare.has(wordStr[j]) ? mapCompare.get(wordStr[j]) + 1 : 1
+          mapCompare.has(wordStr[j]) ? mapCompare.get(wordStr[j])! + 1 : 1
         )
       } else {
         break
@@ -30,4 +30,4 @@ function checkInclusion(s1: string, s2: string): boolean {
   return false
 }
 
-console.log(checkInclusion("ab", "eidboaoo"))
+console.log(checkInclusion('ab', 'eidboaoo'))

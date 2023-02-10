@@ -21,7 +21,7 @@
  *     }
  * }
  */
-import type { binaryTrees as TreeNode } from "../nodeTree"
+import type { binaryTrees as TreeNode } from '../nodeTree.js'
 function levelOrder(root: TreeNode<number> | null): number[][] {
   let res: number[][] = []
   if (root === null) return res
@@ -33,10 +33,10 @@ function levelOrder(root: TreeNode<number> | null): number[][] {
     let curStack: number[] = []
     for (let i = 0; i < len; i++) {
       //* 由于每次会增加节点(push),所以这里从头部去除节点
-      let curNode = stack.shift()
-      curStack.push(curNode!.key)
-      if (curNode!.right) stack.push(curNode!.right)
-      if (curNode!.left) stack.push(curNode!.left)
+      let curNode = stack.shift()!
+      curStack.push(curNode.key)
+      if (curNode.right) stack.push(curNode.right)
+      if (curNode.left) stack.push(curNode.left)
     }
     res.push(curStack)
   }

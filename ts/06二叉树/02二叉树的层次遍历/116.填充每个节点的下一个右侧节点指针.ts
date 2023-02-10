@@ -40,8 +40,8 @@ function connect(root: Node | null): Node | null {
         //* 需要将当前节点左右子节点入队
         preNode = curNode
       }
-      if (preNode!.left) queue.push(preNode!.left)
-      if (preNode!.right) queue.push(preNode!.right)
+      if (preNode.left) queue.push(preNode.left)
+      if (preNode.right) queue.push(preNode.right)
     }
     //* 一层遍历之后,将preNode置空(尾节点)
     preNode!.next = null

@@ -26,9 +26,9 @@ function lowestCommonAncestor(
   q: TreeNode | null
 ): TreeNode | null {
   if (root === null) return root
-  if (root.val > p!.val && root.val > q!.val)
+  if (p && q && root.val > p.val && root.val > q.val)
     return lowestCommonAncestor(root.left, p, q)
-  if (root.val < p!.val && root.val < q!.val)
+  if (p && q && root.val < p.val && root.val < q.val)
     return lowestCommonAncestor(root.right, p, q)
   return root
 }

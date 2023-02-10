@@ -21,7 +21,7 @@
  *     }
  * }
  */
-import { binaryTrees as TreeNode } from "../nodeTree"
+import { binaryTrees as TreeNode } from '../nodeTree.js'
 //function inorderTraversal(root: TreeNode<number> | null): number[] {
 //  function traverse(
 //    root: TreeNode<number> | null,

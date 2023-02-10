@@ -30,10 +30,10 @@ function largestValues(root: TreeNode | null): number[] {
     //* 定义每层中初始比较的最小值
     let max = -Number.MAX_VALUE
     for (let i = 0; i < len; i++) {
-      let curNode = queue.shift()
-      max = Math.max(max, curNode!.val)
-      if (curNode!.left) queue.push(curNode!.left)
-      if (curNode!.right) queue.push(curNode!.right)
+      let curNode = queue.shift()!
+      max = Math.max(max, curNode.val)
+      if (curNode.left) queue.push(curNode.left)
+      if (curNode.right) queue.push(curNode.right)
     }
     res.push(max)
   }

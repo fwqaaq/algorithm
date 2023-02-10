@@ -33,17 +33,17 @@ function isSymmetric(root: TreeNode | null): boolean {
   // return recure(root.left, root.right)
 
   if (!root) return true
-  let stack: TreeNode[] = [root.left!, root.right!]
+  let stack: (TreeNode | null)[] = [root.left, root.right]
   while (stack.length) {
-    let right = stack.pop()!
-    let left = stack.pop()!
+    let right = stack.pop()
+    let left = stack.pop()
     if (!left && !right) continue
     if (!left || !right) return false
     if (left.val !== right.val) return false
-    stack.push(left.left!)
-    stack.push(right.right!)
-    stack.push(left.right!)
-    stack.push(right.left!)
+    stack.push(left.left)
+    stack.push(right.right)
+    stack.push(left.right)
+    stack.push(right.left)
   }
   return true
 }

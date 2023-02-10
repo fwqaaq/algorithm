@@ -4,7 +4,7 @@
  * [141] 环形链表
  */
 
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 
 // @lc code=start
 /**
@@ -23,8 +23,8 @@ function hasCycle(head: ListNode | null): boolean {
   let low = head
   let high = head
   while (high !== null && high.next !== null) {
-    low = low!.next
-    high = high!.next!.next
+    if (low) low = low.next
+    high = high.next.next
     if (low === high) {
       return true
     }

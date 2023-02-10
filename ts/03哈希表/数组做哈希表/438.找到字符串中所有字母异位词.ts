@@ -12,7 +12,7 @@ function findAnagrams(s: string, p: string): number[] {
   let num: number[] = []
   //用map做一个关于p的字典
   for (let v of p) {
-    pMap.set(v, pMap.has(v) ? pMap.get(v) + 1 : 1)
+    pMap.set(v, pMap.has(v) ? pMap.get(v)! + 1 : 1)
   }
   while (right < s.length) {
     //每次滑动窗口移过三个时,重新初始化字典
@@ -20,7 +20,7 @@ function findAnagrams(s: string, p: string): number[] {
     while (right - left !== p.length) {
       if (copyMap.has(s[right])) {
         //只要有符合的字母,就--
-        copyMap.set(s[right], copyMap.get(s[right]) - 1)
+        copyMap.set(s[right], copyMap.get(s[right])! - 1)
       }
       right++
       //如果right滑动到了最后,那么可能会形成死循环,需要释放
@@ -44,4 +44,4 @@ function findAnagrams(s: string, p: string): number[] {
     "yqrbgjdwtcaxzsnifvhmou"
   )
 ) */
-console.log(findAnagrams("bcdebcdekbbccddeekbccdddde", "bcdebcde"))
+console.log(findAnagrams('bcdebcdekbbccddeekbccdddde', 'bcdebcde'))

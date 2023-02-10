@@ -22,16 +22,16 @@ import { ListNode } from './707.设计链表.js'
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   //定义虚拟头节点
   let cur = new ListNode(0, head)
-  let fast = cur
-  let low = cur
+  let fast: ListNode | null = cur
+  let low: ListNode | null = cur
   for (let i = 0; i < n; i++) {
-    fast = fast.next
+    if (fast) fast = fast.next
   }
-  while (fast.next) {
+  while (fast?.next) {
     fast = fast.next
-    low = low.next
+    if (low) low = low.next
   }
-  low.next = low.next.next
+  if (low && low.next) low.next = low.next.next
   return cur.next
 }
 // @lc code=end

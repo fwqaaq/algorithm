@@ -21,7 +21,7 @@
  *     }
  * }
  */
-import type { binaryTrees as TreeNode } from "../nodeTree"
+import type { binaryTrees as TreeNode } from '../nodeTree.js'
 function averageOfLevels(root: TreeNode<number> | null): number[] {
   let res: number[] = []
   if (root === null) return res
@@ -30,10 +30,10 @@ function averageOfLevels(root: TreeNode<number> | null): number[] {
     let sum = 0
     let queueLen = queue.length
     for (let i = 0; i < queueLen; i++) {
-      let queueNode = queue.shift()
-      sum += queueNode!.key
-      if (queueNode!.left) queue.push(queueNode!.left)
-      if (queueNode!.right) queue.push(queueNode!.right)
+      let queueNode = queue.shift()!
+      sum += queueNode.key
+      if (queueNode.left) queue.push(queueNode.left)
+      if (queueNode.right) queue.push(queueNode.right)
     }
     res.push(sum / queueLen)
   }

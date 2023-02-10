@@ -26,17 +26,18 @@ function countNodes(root: TreeNode | null): number {
   let stack: TreeNode[] = [root]
   let count = 1
   while (stack.length) {
-    const node = stack.pop()
-    if (node!.right) {
+    // stack 中一定会有元素
+    const node = stack.pop()!
+    if (node.right) {
       count++
-      stack.push(node!.right)
+      stack.push(node.right)
     }
-    if (node!.left) {
+    if (node.left) {
       count++
-      stack.push(node!.left)
+      stack.push(node.left)
     }
   }
   return count
 }
 // @lc code=end
-export{}
+export {}

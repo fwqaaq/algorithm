@@ -19,19 +19,19 @@ class ListNode {
 function removeElements(head: ListNode | null, val: number): ListNode | null {
   //加入一个虚拟头节点
   head = new ListNode(0, head)
-  let pre: ListNode = head,
-    cur: ListNode = head.next
+  let pre: ListNode | null = head,
+    cur: ListNode | null = head.next
   //删除有val的节点
   while (cur) {
-    if (cur.val === val) {
+    if (cur.val === val && pre) {
       pre.next = cur.next
     } else {
-      pre = pre.next
+      pre = pre!.next
     }
     //更新cur
     cur = cur.next
   }
-  return pre.next
+  return pre!.next
 }
 // @lc code=end
 
@@ -40,13 +40,14 @@ function remove(head: ListNode | null, val: number): ListNode | null {
     head = head.next
   }
   if (head === null) return head
-  let pre = head,
+  let pre: ListNode = head,
     cur = head.next
   while (cur) {
     if (cur.val === val) {
       pre.next = cur.next
     } else {
-      pre = pre.next
+      // 如果是 null，则不更新
+      pre = pre.next ?? pre
     }
     cur = cur.next
   }

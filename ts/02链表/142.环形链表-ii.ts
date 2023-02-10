@@ -16,18 +16,18 @@
  *     }
  * }
  */
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 function detectCycle(head: ListNode | null): ListNode | null {
   let slow = head
   let high = head
-  while (high.next !== null) {
-    slow = slow!.next
-    high = high!.next!.next
+  while (high && high.next !== null) {
+    if (slow) slow = slow.next
+    high = high.next.next
     if (high === slow) {
       let cur = head
       while (cur !== slow) {
-        cur = cur!.next
-        slow = slow!.next
+        if (cur) cur = cur.next
+        if (slow) slow = slow.next
       }
       return cur
     }

@@ -4,7 +4,7 @@
  * [19] 删除链表的倒数第 N 个结点
  */
 
-import { ListNode } from "./707.设计链表"
+import { ListNode } from './707.设计链表.js'
 
 // @lc code=start
 /**

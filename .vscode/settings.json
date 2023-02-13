@@ -1,6 +1,3 @@
 {
-  "docwriter.style": "Auto-detect",
-  "docwriter.language": "English",
-  "docwriter.hotkey.windows": "Alt + .",
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }

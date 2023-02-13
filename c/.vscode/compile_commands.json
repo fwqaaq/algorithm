@@ -1,0 +1,6 @@
+[
+{
+  "directory": "/Users/feiwu/Project/node/algorithm/c",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-g", "-O0", "-o", "build/.objs/c/macosx/undefined/debug/src/Array/main.c.o", "src/Array/main.c"],
+  "file": "src/Array/main.c"
+}]

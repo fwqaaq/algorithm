@@ -2,3 +2,10 @@
 /test
 /rustt/target
 /rustt/.idea
+
+# Xmake cache
+/c/.xmake/
+/c/build/
+
+# MacOS Cache
+.DS_Store

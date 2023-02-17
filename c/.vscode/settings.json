@@ -22,6 +22,10 @@
     "string_view": "c",
     "vector": "c",
     "complex": "c",
-    "limits.h": "c"
+    "limits.h": "c",
+    "cstdlib": "c",
+    "ostream": "c",
+    "new": "c",
+    "stdlib.h": "c"
   }
 }

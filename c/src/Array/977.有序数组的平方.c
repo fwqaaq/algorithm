@@ -27,6 +27,7 @@ int *sortedSquares(int *nums, int numsSize, int *returnSize) {
       right--;
     }
   }
+  free(nums);
   return ans;
 }
 // @lc code=end

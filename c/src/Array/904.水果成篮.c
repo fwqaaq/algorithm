@@ -37,6 +37,7 @@ int totalFruit(int *fruits, int fruitsSize) {
     }
     l = r;
   }
+  free(fruits);
   return res;
 }
 // @lc code=end

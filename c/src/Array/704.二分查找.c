@@ -19,6 +19,7 @@ int search(int *nums, int numsSize, int target) {
       return middle;
     }
   }
+  free(nums);
   return -1;
 }
 // @lc code=end

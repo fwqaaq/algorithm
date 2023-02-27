@@ -1,87 +1,166 @@
+// fn main() {
+//     let text = String::from("xxx xx x ....");
+//     let mut wo = Word::new(&text);
+
+//     println!("{}", wo.next_word().unwrap());
+// }
+
+// struct Word<'a> {
+//     position: usize,
+//     string: &'a str,
+// }
+
+// impl Word<'_> {
+//     fn new(string: &str) -> Word {
+//         Word {
+//             position: 0,
+//             string,
+//         }
+//     }
+
+//     fn next_word(&mut self) -> Option<&str> {
+//         let start_of_world = &self.string[self.position..];
+//         let index_of_next_scope = start_of_world.find(' ').unwrap_or(start_of_world.len());
+//         if !start_of_world.is_empty() {
+//             self.position += index_of_next_scope + 1;
+//             Some(&start_of_world[..index_of_next_scope])
+//         } else {
+//             None
+//         }
+//     }
+// }
+
 use std::{
-    fs,
-    io::prelude::*,
-    net::{TcpListener, TcpStream},
-    sync::{mpsc, Arc, Mutex},
+    cell::Cell,
+    collections::VecDeque,
+    sync::{Condvar, Mutex},
     thread,
+    time::Duration,
 };
 
 fn main() {
-    let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
-    for stream in listener.incoming() {
-        let stream = stream.unwrap();
-        handle_connection(stream);
+    // let t1 = thread::spawn(f);
+    // let t2 = thread::spawn(f);
+
+    // let numbers = vec![1, 2, 3];
+
+    // let numbers = Vec::from_iter(0..=100);
+
+    // let t = thread::spawn(move || {
+    //     // for n in &numbers {
+    //     //     println!("{n}");
+    //     // }
+    //     numbers.iter().sum::<usize>() / numbers.len()
+    // })
+    // .join()
+    // .unwrap();
+
+    // thread::scope(|s| {
+    //     s.spawn(|| {
+    //         println!("length: {}", numbers.len());
+    //     });
+
+    //     s.spawn(|| {
+    //         for n in &numbers {
+    //             println!("{n}");
+    //         }
+    //     });
+    // });
+
+    // let x: &'static [i32; 3  ] = Box::leak(Box::new([1, 2, 3]));
+
+    // thread::spawn(move || dbg!(x));
+    // thread::spawn(move || dbg!(x));
+
+    // let a = Arc::new([1, 2, 3]);
+    // thread::spawn({
+    //     let a = a.clone();
+    //     move || dbg!(a)
+    // });
+    // dbg!(a);
+    // println!("Hello, this is main thread");
+
+    // t1.join().unwrap();
+    // t2.join().unwrap();
+
+    // let c = Cell::new(1);
+    // test_cell(&c, &c);
+
+    // let n = Mutex::new(0);
+    // thread::scope(|s| {
+    //     for _ in 0..10 {
+    //         s.spawn(|| {
+    //             let mut guard = n.lock().unwrap();
+    //             for _ in 0..100 {
+    //                 *guard += 1;
+    //             }
+    //             drop(guard);
+    //             thread::sleep(Duration::from_secs(1));
+    //         });
+    //     }
+    // });
+
+    // assert_eq!(n.into_inner().unwrap(), 1000);
+
+    let queue = Mutex::new(VecDeque::new());
+    let not_empty = Condvar::new();
+
+    thread::scope(|s| {
+        s.spawn(|| loop {
+            // let item = queue.lock().unwrap().pop_front();
+            // if let Some(item) = item {
+            //     dbg!(item);
+            //     println!("{item}");
+            // } else {
+            //     thread::park();
+            // }
+            let mut q = queue.lock().unwrap();
+            let item = loop {
+                if let Some(item) = q.pop_front() {
+                    break item;
+                } else {
+                    q = not_empty.wait(q).unwrap();
+                }
+            };
+            drop(q);
+            dbg!(item);
+        });
+
+        for i in 0.. {
+            queue.lock().unwrap().push_back(i);
+            // t.thread().unpark();
+            not_empty.notify_one();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+
+fn f() {
+    println!("hello from another thread");
+
+    let id = thread::current().id();
+    println!("this is my thread id: {id:?}");
+}
+
+fn x(a: &i32, b: &mut i32) {
+    let before = *a;
+    *b += 1;
+    let after = *a;
+
+    if before != after {
+        println!("xxx");
+    }
+
+    let a = [1, 2, 3];
+    let b = unsafe { a.get_unchecked(3) };
+}
+
+fn test_cell(a: &Cell<i32>, b: &Cell<i32>) {
+    let before = a.get();
+    b.set(b.get() + 1);
+    let after = a.get();
+
+    if before != after {
+        println!("xxx");
     }
 }
-
-fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
-    stream.read_exact(&mut buffer).unwrap();
-    println!("{}", String::from_utf8_lossy(&buffer));
-
-    // let get = b"GET / HTTP/1.1\r\n";
-    let contents =
-        fs::read_to_string("/Users/feiwu/Project/node/algorithm/rustt/src/index.html").unwrap();
-
-    let response = format!(
-        "HTTP/1.1 200 OK\nContent-Length: {}\nContent-Type: text/plain\n\n{}",
-        contents.len(),
-        contents
-    );
-    stream.write_all(response.as_bytes()).unwrap();
-    stream.flush().unwrap();
-
-    println!("{:?}", stream);
-}
-
-// pub struct ThreadPool {
-//     threads: Vec<Worker>,
-//     sender: mpsc::Sender<Job>,
-// }
-
-// // struct Job;
-
-// impl ThreadPool {
-//     pub fn new(size: usize) -> ThreadPool {
-//         assert!(size > 0);
-//         let (sender, receiver) = mpsc::channel();
-//         let mut workers = Vec::with_capacity(size);
-
-//         let rec = Arc::new(Mutex::new(receiver));
-
-//         for id in 0..size {
-//             workers.push(Worker::new(id, Arc::clone(&rec)));
-//         }
-
-//         ThreadPool {
-//             threads: workers,
-//             sender,
-//         }
-//     }
-
-//     pub fn execute<F>(&self, f: F)
-//     where
-//         F: FnOnce() + Send + 'static,
-//     {
-//         let job = Box::new(f);
-//         self.sender.send(job).unwrap();
-//     }
-// }
-
-// struct Worker {
-//     id: usize,
-//     thread: thread::JoinHandle<()>,
-// }
-
-// type Job = Box<dyn FnOnce() + Send + 'static>;
-
-// impl Worker {
-//     fn new(id: usize, rec: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
-//         let thread = thread::spawn(move || loop {
-//             let job = rec.lock().unwrap().recv().unwrap();
-//             // println!("worker {:?} get a job; execting", job);
-//             job();
-//         });
-//         Worker { id, thread }
-//     }
-// }

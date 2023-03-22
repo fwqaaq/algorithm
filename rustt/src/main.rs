@@ -1,11 +1,54 @@
-// 声明一个外部函数 abs，它接受一个 i32 类型的参数，返回一个 i32 类型的值
-extern "C" {
-    fn abs(input: i32) -> i32;
+use std::{
+    cell::UnsafeCell,
+    ops::{Deref, DerefMut},
+    sync::atomic::{
+        AtomicBool,
+        Ordering::{Acquire, Release},
+    },
+    sync::Mutex,
+};
+fn main() {}
+
+pub struct SpinLock<T> {
+    locked: AtomicBool,
+    value: UnsafeCell<T>,
 }
 
-fn main() {
-    // 调用 abs 函数，传入 -3 作为参数
-    let x = unsafe { abs(-3) };
-    // 打印返回值，应该是 3
-    println!("The absolute value of -3 is {}", x);
+impl<T> SpinLock<T> {
+    pub const fn new(value: T) -> Self {
+        SpinLock {
+            locked: AtomicBool::new(false),
+            value: UnsafeCell::new(value),
+        }
+    }
+
+    pub fn lock(&self) -> Guard<T> {
+        while self.locked.swap(true, Acquire) {
+            std::hint::spin_loop();
+        }
+        Guard { lock: self }
+    }
+}
+
+pub struct Guard<'a, T> {
+    lock: &'a SpinLock<T>,
+}
+
+impl<T> Deref for Guard<'_, T> {
+    type Target = T;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*self.lock.value.get() }
+    }
+}
+
+impl<T> DerefMut for Guard<'_, T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        unsafe { &mut *self.lock.value.get() }
+    }
+}
+
+impl<T> Drop for Guard<'_, T> {
+    fn drop(&mut self) {
+        self.lock.locked.store(false, Release);
+    }
 }

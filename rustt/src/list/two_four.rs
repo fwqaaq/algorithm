@@ -37,7 +37,7 @@ impl Solution {
         //     }
         // }
         // dummy_head.next
-        if head == None || head.as_ref().unwrap().next == None {
+        if head.is_none() || head.as_ref().unwrap().next.is_none() {
             return head;
         }
 

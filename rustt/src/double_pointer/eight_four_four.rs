@@ -6,36 +6,41 @@
 pub struct Solution;
 // @lc code=start
 impl Solution {
+    // pub fn backspace_compare(s: String, t: String) -> bool {
+    //     let (s, t) = (
+    //         s.chars().collect::<Vec<char>>(),
+    //         t.chars().collect::<Vec<char>>(),
+    //     );
+    //     Self::get_string(s) == Self::get_string(t)
+    // }
+    // pub fn get_string(mut chars: Vec<char>) -> Vec<char> {
+    //     let mut slow = 0;
+    //     for i in 0..chars.len() {
+    //         if chars[i] == '#' {
+    //             slow = (slow as u32).saturating_sub(1) as usize;
+    //         } else {
+    //             chars[slow] = chars[i];
+    //             slow += 1;
+    //         }
+    //     }
+    //     chars.truncate(slow);
+    //     chars
+    // }
+
     pub fn backspace_compare(s: String, t: String) -> bool {
-        let (mut s, mut t) = (
-            s.chars().collect::<Vec<char>>(),
-            t.chars().collect::<Vec<char>>(),
-        );
-        let mut slow = 0;
-        for i in 0..s.len() {
-            if s[i] == '#' {
-                if slow > 0 {
-                    slow -= 1;
-                }
-            } else {
-                s[slow] = s[i];
-                slow += 1;
+        Self::get_string(s) == Self::get_string(t)
+    }
+
+    pub fn get_string(string: String) -> String {
+        let mut s = String::new();
+        for c in string.chars() {
+            if c != '#' {
+                s.push(c);
+            } else if !s.is_empty() {
+                s.pop();
             }
         }
-        s.truncate(slow);
-        slow = 0;
-        for i in 0..t.len() {
-            if t[i] == '#' {
-                if slow > 0 {
-                    slow -= 1;
-                }
-            } else {
-                t[slow] = t[i];
-                slow += 1;
-            }
-        }
-        t.truncate(slow);
-        s == t
+        s
     }
 }
 // @lc code=end

@@ -25,7 +25,7 @@ impl Solution {
             }
             i += 1;
         }
-        chars.splice(0..slow, []).into_iter().collect()
+        chars.splice(0..slow, []).collect()
     }
     pub fn reverse_words(s: String) -> String {
         Self::move_space(s)

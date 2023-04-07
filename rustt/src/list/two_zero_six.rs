@@ -21,28 +21,28 @@ pub struct Solution;
 // @lc code=start
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        // let mut cur = head;
-        // let mut pre = None;
-        // while let Some(mut node) = cur.take() {
-        //     cur = node.next;
-        //     node.next = pre;
-        //     pre = Some(node);
-        // }
-        // pre
-
-        fn rev(
-            mut head: Option<Box<ListNode>>,
-            mut pre: Option<Box<ListNode>>,
-        ) -> Option<Box<ListNode>> {
-            if let Some(mut node) = head.take() {
-                let cur = node.next;
-                node.next = pre;
-                pre = Some(node);
-                return rev(cur, pre);
-            }
-            pre
+        let mut cur = head;
+        let mut pre = None;
+        while let Some(mut node) = cur.take() {
+            cur = node.next;
+            node.next = pre;
+            pre = Some(node);
         }
-        rev(head, None)
+        pre
+
+        // fn rev(
+        //     mut head: Option<Box<ListNode>>,
+        //     mut pre: Option<Box<ListNode>>,
+        // ) -> Option<Box<ListNode>> {
+        //     if let Some(mut node) = head.take() {
+        //         let cur = node.next;
+        //         node.next = pre;
+        //         pre = Some(node);
+        //         return rev(cur, pre);
+        //     }
+        //     pre
+        // }
+        // rev(head, None)
     }
 }
 // @lc code=end

@@ -9,4 +9,8 @@ edition = "2021"
 name="spin_lock"
 path="./src/Spin_lock.rs"
 
+[[bin]]
+name="channel"
+path="./src/channel.rs"
+
 [dependencies]

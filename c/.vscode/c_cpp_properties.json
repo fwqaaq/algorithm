@@ -4,13 +4,20 @@
       "name": "Mac",
       "includePath": ["${workspaceFolder}/**"],
       "defines": [],
-      "macFrameworkPath": [
-        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
-      ],
       "compilerPath": "/usr/bin/clang",
       "cStandard": "c17",
       "cppStandard": "c++17",
       "intelliSenseMode": "clang-arm64",
+      "compileCommands": ".vscode/compile_commands.json"
+    },
+    {
+      "name": "WSL",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-gcc-x64",
       "compileCommands": ".vscode/compile_commands.json"
     }
   ],

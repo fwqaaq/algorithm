@@ -26,6 +26,9 @@
     "cstdlib": "c",
     "ostream": "c",
     "new": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "*.tcc": "c",
+    "random": "c",
+    "numeric": "c"
   }
 }

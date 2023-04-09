@@ -109,4 +109,5 @@ mod binary_tree {
 }
 
 mod backtrace;
+mod dynamic;
 mod greedy;

@@ -13,4 +13,12 @@ path="./src/Spin_lock.rs"
 name="channel"
 path="./src/channel.rs"
 
+[[bin]]
+name="asm"
+path="./src/asm.rs"
+
+[[bin]]
+name="arc"
+path="./src/arc.rs"
+
 [dependencies]

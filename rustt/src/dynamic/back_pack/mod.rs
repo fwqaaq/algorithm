@@ -1,3 +1,5 @@
+mod four_one_six;
+
 pub struct Solution;
 
 impl Solution {

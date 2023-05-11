@@ -20,5 +20,3 @@ path="./src/asm.rs"
 [[bin]]
 name="arc"
 path="./src/arc.rs"
-
-[dependencies]

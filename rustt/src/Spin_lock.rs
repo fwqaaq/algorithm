@@ -31,6 +31,8 @@ impl<T> SpinLock<T> {
     }
 }
 
+// T 的生命周期一定要比 'a 的长
+// pub struct Guard<'a, T:'a> {
 pub struct Guard<'a, T> {
     lock: &'a SpinLock<T>,
 }

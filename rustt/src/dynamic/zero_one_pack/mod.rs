@@ -1,4 +1,7 @@
+mod four_nine_four;
 mod four_one_six;
+mod four_seven_four;
+mod one_zero_four_nine;
 
 pub struct Solution;
 

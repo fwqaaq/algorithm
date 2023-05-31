@@ -3,6 +3,7 @@ mod one_three_nine;
 mod seven_zero;
 mod three_seven_seven;
 mod three_two_two;
+mod two_seven_nine;
 
 struct Solution;
 

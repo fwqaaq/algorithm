@@ -2,6 +2,7 @@ mod complete_pack;
 mod five_zero_nine;
 mod house_robber;
 mod nine_six;
+mod sell_stock;
 mod seven_four_six;
 mod seven_zero;
 mod six_three;

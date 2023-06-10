@@ -20,3 +20,10 @@ path="./src/asm.rs"
 [[bin]]
 name="arc"
 path="./src/arc.rs"
+
+[[bin]]
+name="mut"
+path="./src/mut.rs"
+
+[dependencies]
+atomic-wait = "1.1.0"

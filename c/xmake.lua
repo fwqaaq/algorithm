@@ -1,9 +1,10 @@
 add_rules("mode.debug", "mode.release")
 
-set_languages("c17")
+set_languages("c17", "cxx20")
+
 target("c")
     set_kind("binary")
-    add_files("src/Array/main.c")
+    add_files("src/Array/*.c")
 
 
 --

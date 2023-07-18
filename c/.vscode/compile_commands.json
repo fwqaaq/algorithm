@@ -1,6 +1,0 @@
-[
-{
-  "directory": "/home/feiwu/Project/rust/algorithm/c",
-  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-g", "-O0", "-std=c17", "-o", "build/.objs/c/linux/x86_64/debug/src/Array/main.c.o", "src/Array/main.c"],
-  "file": "src/Array/main.c"
-}]

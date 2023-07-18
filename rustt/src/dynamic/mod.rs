@@ -7,5 +7,6 @@ mod seven_four_six;
 mod seven_zero;
 mod six_three;
 mod six_two;
+mod subsequence;
 mod three_four_three;
 mod zero_one_pack;

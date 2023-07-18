@@ -7,23 +7,19 @@ edition = "2021"
 
 [[bin]]
 name="spin_lock"
-path="./src/Spin_lock.rs"
+path="./src/atomic/Spin_lock.rs"
 
 [[bin]]
 name="channel"
-path="./src/channel.rs"
-
-[[bin]]
-name="asm"
-path="./src/asm.rs"
+path="./src/atomic/channel.rs"
 
 [[bin]]
 name="arc"
-path="./src/arc.rs"
+path="./src/atomic/arc.rs"
 
 [[bin]]
 name="mut"
-path="./src/mut.rs"
+path="./src/atomic/mut.rs"
 
 [dependencies]
 atomic-wait = "1.1.0"

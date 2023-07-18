@@ -1,8 +1,9 @@
 /*
- * @lc app=leetcode.cn id=34 lang=rust
- *
- * [34] 在排序数组中查找元素的第一个和最后一个位置
- */
+
+* @lc app=leetcode.cn id=34 lang=rust
+*
+* [34] 在排序数组中查找元素的第一个和最后一个位置
+*/
 
 use std::cmp::Ordering;
 
@@ -44,7 +45,7 @@ impl Solution {
 
     pub fn get_right_border(nums: &Vec<i32>, target: i32) -> i32 {
         let mut left = 0;
-        let mut right = nums.len();
+        let mut right: usize = nums.len();
         let mut right_border: i32 = -2;
         while left < right {
             let mid = (left + right) / 2;
@@ -56,7 +57,7 @@ impl Solution {
                 right_border = left as i32;
             }
         }
-        right_border as i32
+        right_border
     }
 
     pub fn get_left_border(nums: &Vec<i32>, target: i32) -> i32 {
@@ -72,7 +73,7 @@ impl Solution {
                 left = mid + 1;
             }
         }
-        left_border as i32
+        left_border
     }
 }
 

@@ -61,12 +61,15 @@ impl Solution {
         val: i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
         if let Some(node) = &root {
-            if node.borrow().val > val {
-                let left = Self::insert_into_bst(node.borrow_mut().left.take(), val);
-                node.borrow_mut().left = left;
-            } else {
-                let right = Self::insert_into_bst(node.borrow_mut().right.take(), val);
-                node.borrow_mut().right = right;
+            match node.borrow().val.cmp(&val) {
+                std::cmp::Ordering::Greater => {
+                    let left = Self::insert_into_bst(node.borrow_mut().left.take(), val);
+                    node.borrow_mut().left = left;
+                }
+                _ => {
+                    let right = Self::insert_into_bst(node.borrow_mut().right.take(), val);
+                    node.borrow_mut().right = right;
+                }
             }
             root
         } else {

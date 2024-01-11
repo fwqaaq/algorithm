@@ -23,6 +23,7 @@ func traversal_postorder(root *TreeNode, res *[]int) {
 	traversal_postorder(root.Right, res)
 	*res = append(*res, root.Val)
 }
+
 func postorderTraversal(root *TreeNode) []int {
 	res := []int{}
 	traversal_postorder(root, &res)

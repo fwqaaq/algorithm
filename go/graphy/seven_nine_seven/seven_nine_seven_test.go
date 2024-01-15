@@ -1,4 +1,4 @@
-package graphy
+package graphics
 
 import (
 	"fmt"

@@ -11,7 +11,7 @@ mod double_pointer;
 #[allow(warnings)]
 mod dynamic;
 #[allow(warnings)]
-mod graphy;
+mod graphics;
 #[allow(warnings)]
 mod greedy;
 #[allow(warnings)]

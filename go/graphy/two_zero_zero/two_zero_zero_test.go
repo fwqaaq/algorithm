@@ -1,4 +1,4 @@
-package graphy
+package graphics
 
 /*
  * @lc app=leetcode.cn id=200 lang=golang
